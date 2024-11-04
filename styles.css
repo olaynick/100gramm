@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4; /* Фоновый цвет страницы */
+}
+
+h1 {
+    color: #333;
+    text-align: center; /* Центрируем заголовок */
+}
+
+.tile-container {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет плиткам переноситься на новую строку */
+    justify-content: center; /* Центрируем плитки */
+    margin-top: 20px;
+}
+
+.tile {
+    background-color: #007BFF; /* Цвет фона плитки */
+    color: white; /* Цвет текста */
+    text-align: center; /* Центрируем текст в плитке */
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px; /* Закругленные углы */
+    text-decoration: none; /* Убираем подчеркивание */
+    width: 150px; /* Ширина плитки */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.tile:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+}
