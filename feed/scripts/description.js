@@ -2,12 +2,20 @@ export function initializeDescriptions(post) {
     const description = post.querySelector('.description');
     const showMoreButton = post.querySelector('.show-more');
 
+    // Проверка наличия элементов описания и кнопки "Показать больше"
     if (!description || !showMoreButton) {
         console.warn('Элементы описания или кнопки "Показать больше" не найдены в посте', post);
         return;
     }
 
     const fullDescription = description.textContent;
+    
+    // Проверка на пустое описание
+    if (fullDescription.length === 0) {
+        console.warn('Описание пустое в посте', post);
+        return;
+    }
+
     description.setAttribute('data-full-description', fullDescription);
 
     // Сокращаем описание, если оно длиннее 40 символов

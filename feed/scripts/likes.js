@@ -4,6 +4,13 @@ export function initializeLikes() {
     likeIcons.forEach(icon => {
         icon.addEventListener('click', () => {
             const likeCountElement = icon.nextElementSibling; // Находим элемент с количеством лайков
+            
+            // Проверка наличия элемента с количеством лайков
+            if (!likeCountElement) {
+                console.warn('Элемент с количеством лайков не найден', icon);
+                return;
+            }
+
             let likeCount = parseInt(likeCountElement.textContent.split(' ')[0]); // Извлекаем текущее количество лайков
 
             // Проверяем, был ли лайк уже поставлен

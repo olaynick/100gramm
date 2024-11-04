@@ -4,6 +4,12 @@ export function initializeComments(post) {
     const commentsContainer = post.querySelector('.comments-container');
     const showCommentsButton = post.querySelector('.show-comments-button');
 
+    // Проверка наличия всех необходимых элементов
+    if (!sendCommentButton || !commentInput || !commentsContainer || !showCommentsButton) {
+        console.warn('Не все элементы комментариев найдены в посте', post);
+        return;
+    }
+
     sendCommentButton.addEventListener('click', () => {
         addComment(commentInput, commentsContainer, showCommentsButton);
     });
