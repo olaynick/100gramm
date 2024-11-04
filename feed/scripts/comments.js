@@ -3,9 +3,10 @@ export function initializeComments(post) {
     const commentInput = post.querySelector('.comment-input');
     const commentsContainer = post.querySelector('.comments-container');
     const showCommentsButton = post.querySelector('.show-comments-button');
+    const showMoreButton = commentsContainer.querySelector('.show-more-comments-button'); // Получаем кнопку "Еще"
 
     // Проверка наличия всех необходимых элементов
-    if (!sendCommentButton || !commentInput || !commentsContainer || !showCommentsButton) {
+    if (!sendCommentButton || !commentInput || !commentsContainer || !showCommentsButton || !showMoreButton) {
         console.warn('Не все элементы комментариев найдены в посте', post);
         return;
     }
@@ -17,6 +18,9 @@ export function initializeComments(post) {
     showCommentsButton.addEventListener('click', () => {
         toggleComments(commentsContainer, showCommentsButton);
     });
+
+    // Инициализация видимости комментариев
+    updateCommentsVisibility(commentsContainer);
 }
 
 function addComment(input, container) {
@@ -42,7 +46,7 @@ function createCommentElement(text) {
 
 function updateCommentsVisibility(container) {
     const comments = container.querySelectorAll('.comment');
-    const showMoreButton = container.querySelector('.show-more-button');
+    const showMoreButton = container.querySelector('.show-more-comments-button');
 
     // Скрываем все комментарии, кроме первых трех
     comments.forEach((comment, index) => {
@@ -64,21 +68,21 @@ function updateCommentsVisibility(container) {
 
 function toggleComments(container, button) {
     const comments = container.querySelectorAll('.comment');
-    const showMoreButton = container.querySelector('.show-more-button');
+    const showMoreButton = container.querySelector('.show-more-comments-button');
 
-    if (button.textContent === 'Еще') {
+    if (showMoreButton.textContent === 'Еще') {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'block'; // Показываем все комментарии
             }
         });
-        button.textContent = 'Скрыть';
+        showMoreButton.textContent = 'Скрыть';
     } else {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'none'; // Скрываем комментарии, кроме первых трех
             }
         });
-        button.textContent = 'Еще';
+        showMoreButton.textContent = 'Еще';
     }
 }
