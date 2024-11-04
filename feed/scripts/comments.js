@@ -3,7 +3,7 @@ export function initializeComments(post) {
     const commentInput = post.querySelector('.comment-input');
     const commentsContainer = post.querySelector('.comments-container');
     const showCommentsButton = post.querySelector('.show-comments-button');
-    const showMoreButton = commentsContainer.querySelector('.show-more-comments-button'); // Получаем кнопку "Еще"
+    const showMoreButton = commentsContainer.querySelector('.show-more-comments-button');
 
     // Проверка наличия всех необходимых элементов
     if (!sendCommentButton || !commentInput || !commentsContainer || !showCommentsButton || !showMoreButton) {
@@ -29,7 +29,7 @@ function addComment(input, container) {
         const comment = createCommentElement(commentText);
         container.appendChild(comment);
         input.value = '';
-        updateCommentsVisibility(container);
+        updateCommentsVisibility(container); // Обновляем видимость комментариев после добавления
     }
 }
 
@@ -40,6 +40,7 @@ function createCommentElement(text) {
     // Ограничиваем длину комментария до 20 символов
     const previewText = text.length > 20 ? text.substring(0, 20) + '...' : text;
     comment.textContent = previewText;
+    comment.dataset.fullText = text; // Сохраняем полный текст комментария
 
     return comment;
 }
@@ -74,6 +75,8 @@ function toggleComments(container, button) {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'block'; // Показываем все комментарии
+                // Если комментарий длиннее 20 символов, показываем полный текст
+                comment.textContent = comment.dataset.fullText; // Показываем полный текст комментария
             }
         });
         showMoreButton.textContent = 'Скрыть';
@@ -81,6 +84,8 @@ function toggleComments(container, button) {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'none'; // Скрываем комментарии, кроме первых трех
+                // Скрываем длинные комментарии, показываем только предварительный текст
+                comment.textContent = comment.dataset.fullText.substring(0, 20) + '...'; // Показываем краткий текст
             }
         });
         showMoreButton.textContent = 'Еще';
