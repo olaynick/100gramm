@@ -1,5 +1,3 @@
-// footer.js
-
 export function initializeFooter() {
     const footer = document.querySelector('footer');
     
@@ -20,14 +18,14 @@ export function initializeFooter() {
                     footer.style.opacity = '1'; // Показать футер с плавным переходом
                 }, 10); // Небольшая задержка для активации перехода
             }
-        }
-
-        // Скрываем футер, если прокручиваем вверх
-        if (currentScrollY < lastScrollY) {
-            footer.style.opacity = '0'; // Скрываем футер с плавным переходом
-            setTimeout(() => {
-                footer.style.display = 'none'; // Скрываем футер после завершения анимации
-            }, 300); // Задержка для завершения анимации
+        } else {
+            // Скрываем футер, если прокручиваем вверх
+            if (currentScrollY < lastScrollY && footer.style.display === 'flex') {
+                footer.style.opacity = '0'; // Скрываем футер с плавным переходом
+                setTimeout(() => {
+                    footer.style.display = 'none'; // Скрываем футер после завершения анимации
+                }, 300); // Задержка для завершения анимации
+            }
         }
 
         lastScrollY = currentScrollY; // Обновляем позицию прокрутки

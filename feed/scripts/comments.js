@@ -2,7 +2,9 @@ export function initializeComments(post) {
     const sendCommentButton = post.querySelector('.send-comment');
     const commentInput = post.querySelector('.comment-input');
     const commentsContainer = post.querySelector('.comments-container');
-    const showMoreButton = commentsContainer.querySelector('.show-more-comments-button');
+    const commentsList = commentsContainer.querySelector('.comments-list');
+    const showMoreContainer = commentsContainer.querySelector('.show-more-container');
+    const showMoreButton = showMoreContainer.querySelector('.show-more-comments-button');
 
     // Проверка наличия всех необходимых элементов
     if (!sendCommentButton || !commentInput || !commentsContainer || !showMoreButton) {
@@ -11,24 +13,24 @@ export function initializeComments(post) {
     }
 
     sendCommentButton.addEventListener('click', () => {
-        addComment(commentInput, commentsContainer);
+        addComment(commentInput, commentsList, showMoreContainer);
     });
 
     showMoreButton.addEventListener('click', () => {
-        toggleComments(commentsContainer, showMoreButton);
+        toggleComments(commentsList, showMoreButton);
     });
 
     // Инициализация видимости комментариев
-    updateCommentsVisibility(commentsContainer);
+    updateCommentsVisibility(commentsList, showMoreContainer);
 }
 
-function addComment(input, container) {
+function addComment(input, commentsList, showMoreContainer) {
     if (input.value.trim() !== "") {
         const commentText = input.value;
         const comment = createCommentElement(commentText);
-        container.insertBefore(comment, container.querySelector('.show-more-comments-button')); // Вставляем перед кнопкой
+        commentsList.appendChild(comment); // Добавляем комментарий в список
         input.value = '';
-        updateCommentsVisibility(container); // Обновляем видимость комментариев после добавления
+        updateCommentsVisibility(commentsList, showMoreContainer); // Обновляем видимость комментариев после добавления
     }
 }
 
@@ -44,45 +46,87 @@ function createCommentElement(text) {
     return comment;
 }
 
-function updateCommentsVisibility(container) {
-    const comments = container.querySelectorAll('.comment');
-    const showMoreButton = container.querySelector('.show-more-comments-button');
+function updateCommentsVisibility(commentsList, showMoreContainer) {
+    const comments = commentsList.querySelectorAll('.comment');
 
-    // Скрываем все комментарии, кроме первых трех
-    comments.forEach((comment, index) => {
-        if (index < 3) {
-            comment.style.display = 'block';
-        } else {
-            comment.style.display = 'none';
-        }
-    });
-
-    // Проверяем, нужно ли показывать кнопку "Показать еще"
-    if (comments.length > 3) {
-        showMoreButton.style.display = 'block';
+    // Условие 1: Если комментариев 0
+    if (comments.length === 0) {
+        const noCommentsMessage = document.createElement('div');
+        noCommentsMessage.classList.add('no-comments-message');
+        noCommentsMessage.textContent = "Пока нет комментариев";
+        commentsList.appendChild(noCommentsMessage);
+        showMoreContainer.style.display = 'none';
+        return;
     } else {
-        showMoreButton.style.display = 'none';
+        const noCommentsMessage = commentsList.querySelector('.no-comments-message');
+        if (noCommentsMessage) {
+            noCommentsMessage.remove(); // Удаляем сообщение, если комментарии есть
+        }
+    }
+
+    // Условие 2: Если комментариев от 1 до 3
+    if (comments.length >= 1 && comments.length <= 3) {
+        comments.forEach(comment => {
+            const fullText = comment.dataset.fullText;
+            comment.style.display = 'block'; // Показываем все комментарии
+            comment.textContent = fullText.length > 20 ? fullText.substring(0, 20) + '...' : fullText; // Сокращаем, если нужно
+        });
+        showMoreContainer.style.display = 'none'; // Скрываем кнопку
+        return;
+    }
+
+    // Условие 3: Если комментариев от 4 до 10
+    if (comments.length >= 4 && comments.length <= 10) {
+        comments.forEach((comment, index) => {
+            const fullText = comment.dataset.fullText;
+            if (index < 3) {
+                comment.style.display = 'block'; // Показываем первые 3 комментария
+                comment.textContent = fullText.length > 20 ? fullText.substring(0, 20) + '...' : fullText; // Сокращаем, если нужно
+            } else {
+                comment.style.display = 'none'; // Скрываем остальные
+            }
+        });
+        showMoreContainer.style.display = 'inline'; // Показываем контейнер для кнопки "Показать больше"
+        return;
+    }
+
+    // Условие 4: Если комментариев больше 10
+    if (comments.length > 10) {
+        comments.forEach((comment, index) => {
+            const fullText = comment.dataset.fullText;
+            if (index < 10) {
+                comment.style.display = 'block'; // Показываем первые 10 комментариев
+                comment.textContent = fullText.length > 20 ? fullText.substring(0, 20) + '...' : fullText; // Сокращаем, если нужно
+            } else {
+                comment.style.display = 'none'; // Скрываем остальные
+            }
+        });
+        showMoreContainer.style.display = 'block'; // Показываем контейнер для кнопки "Показать больше"
     }
 }
 
-function toggleComments(container, button) {
-    const comments = container.querySelectorAll('.comment');
 
-    if (button.textContent === 'Показать еще') {
+
+function toggleComments(commentsList, button) {
+    const comments = commentsList.querySelectorAll('.comment');
+    const allCommentsVisible = Array.from(comments).every(comment => comment.style.display === 'block');
+
+    if (button.textContent === 'Показать больше' || !allCommentsVisible) {
         comments.forEach((comment, index) => {
             if (index >= 3) {
-                comment.style.display = 'block'; // Показываем все комментарии
+                comment.style.display = 'block'; // Показываем скрытые комментарии
                 comment.textContent = comment.dataset.fullText; // Показываем полный текст комментария
             }
         });
-        button.textContent = 'Скрыть';
+        button.textContent = 'Скрыть'; // Меняем текст кнопки на "Скрыть"
     } else {
         comments.forEach((comment, index) => {
             if (index >= 3) {
-                comment.style.display = 'none'; // Скрываем комментарии, кроме первых трех
+                comment.style.display = 'none'; // Скрываем комментарии, начиная с 4-го
                 comment.textContent = comment.dataset.fullText.substring(0, 20) + '...'; // Показываем краткий текст
             }
         });
-        button.textContent = 'Показать еще';
+        button.textContent = 'Показать больше'; // Меняем текст кнопки на "Показать больше"
     }
 }
+
