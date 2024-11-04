@@ -1,5 +1,8 @@
 body {
-    font-family: Arial, sans-serif; /* Шрифт для всего тела */
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
 }
 
 main {

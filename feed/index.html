@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="header-left">
-            <h1 class="main-title">Лента</h1>
+            <div class="logo"><img class="logo_image" src="../static/logo.png" alt="logo"></div><h1 class="main-title">100gramm</h1>
         </div>
         <div class="header-right">
             <div class="notification-icon" aria-label="Уведомления">
@@ -26,21 +26,19 @@
                 <p class="description">Это пример описания, которое может превышать 40 символов, чтобы протестировать новую функциональность.</p>
                 <span class="show-more">Показать полностью</span>
                 <div class="icons">
-                    <span class="like-icon" id="like-icon-1" role="button" aria-label="Нравится">❤️</span>
-                    <span class="like-count" id="like-count-1">0 Мне нравится</span>
+                    <span class="like-icon" id="like-icon-2" role="button" aria-label="Нравится">❤️</span>
+                    <span class="like-count" id="like-count-2">0 Мне нравится</span>
                 </div>
                 <input type="text" class="comment-input" placeholder="Введите комментарий" aria-label="Комментарий">
                 <span class="send-comment" role="button" aria-label="Отправить комментарий">➡️</span>
                 <div class="comments-container">
-                    <!-- Примеры комментариев -->
-                    <div class="comment">Первый комментарий Первый комментарий Первый комментарий Первый комментарий Первый комментарий Первый комментарий</div>
+                    <div class="comment">Первый комментарий</div>
                     <div class="comment">Второй комментарий</div>
                     <div class="comment">Третий комментарий</div>
-                    <div class="comment">Четвертый комментарий, который длиннее 20 символов...</div>
+                    <div class="comment">Четвертый комментарий, который длиннее 20 символов...Четвертый комментарий, который длиннее 20 символов...</div>
                     <div class="comment">Пятый комментарий, который тоже длиннее 20 символов...</div>
-                    <button class="show-more-comments-button" style="display:none;">Еще</button>
+                    <button class="show-more-comments-button" style="display: none;">Показать еще</button>
                 </div>
-                <button class="show-comments-button" style="display:none;">Комментарии</button>
             </article>
 
             <!-- Повторите блок article для других публикаций -->
@@ -61,9 +59,8 @@
                     <div class="comment">Третий комментарий</div>
                     <div class="comment">Четвертый комментарий, который длиннее 20 символов...</div>
                     <div class="comment">Пятый комментарий, который тоже длиннее 20 символов...</div>
-                    <button class="show-more-comments-button" style="display:none;">Еще</button>
+                    <button class="show-more-comments-button" style="display: none;">Показать еще</button>
                 </div>
-                <button class="show-comments-button" style="display:none;">Комментарии</button>
             </article>
 
             <article class="post">
@@ -72,8 +69,8 @@
                 <p class="description">Это пример описания, которое может превышать 40 символов, чтобы протестировать новую функциональность.</p>
                 <span class="show-more">Показать полностью</span>
                 <div class="icons">
-                    <span class="like-icon" id="like-icon-3" role="button" aria-label="Нравится">❤️</span>
-                    <span class="like-count" id="like-count-3">0 Мне нравится</span>
+                    <span class="like-icon" id="like-icon-2" role="button" aria-label="Нравится">❤️</span>
+                    <span class="like-count" id="like-count-2">0 Мне нравится</span>
                 </div>
                 <input type="text" class="comment-input" placeholder="Введите комментарий" aria-label="Комментарий">
                 <span class="send-comment" role="button" aria-label="Отправить комментарий">➡️</span>
@@ -83,9 +80,8 @@
                     <div class="comment">Третий комментарий</div>
                     <div class="comment">Четвертый комментарий, который длиннее 20 символов...</div>
                     <div class="comment">Пятый комментарий, который тоже длиннее 20 символов...</div>
-                    <button class="show-more-comments-button" style="display:none;">Еще</button>
+                    <button class="show-more-comments-button" style="display: none;">Показать еще</button>
                 </div>
-                <button class="show-comments-button" style="display:none;">Комментарии</button>
             </article>
         </section>
     </main>
@@ -98,8 +94,12 @@
     </nav>
 
     <footer>
-        <p>&copy; 2024 100gramm. Все права защищены.</p>
+        <p>Больше нет свежих новостей. Нажмите, чтобы вернуться в начало.</p>
     </footer>
+    
+    
+    
+    
 
     <script type="module" src="scripts/main.js"></script>
 </body>

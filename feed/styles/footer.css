@@ -1,13 +1,25 @@
 footer {
-    background-color: #f8f9fa; /* Цвет фона подвала */
-    text-align: center; /* Центрируем текст в подвале */
-    padding: 10px; /* Внутренние отступы подвала */
-    position: relative; /* Относительное положение подвала */
-    bottom: 0; /* Положение внизу */
-    width: 100%; /* Ширина подвала */
+    background-color: #599adc; /* Цвет фона футера */
+    padding: 10px; /* Внутренние отступы футера */
+    display: none; /* Скрываем футер по умолчанию */
+    flex: 0 0 auto; /* Используем flexbox для футера */
+    justify-content: center; /* Центрирование содержимого */
+    align-items: center; /* Центрирование содержимого */
+    position: fixed; /* Фиксированное положение футера */
+    bottom: 18px; /* Расположение футера */
+    left: 20px; /* Отступ слева */
+    width: calc(100% - 40px); /* Ширина футера */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Тень для футера */
+    border-radius: 8px; /* Скругленные углы */
+    opacity: 0; /* Скрыть футер по умолчанию */
+    transition: opacity 0.3s ease, display 0s 0.3s; /* Плавный переход для появления */
+    z-index: 999; /* Убедитесь, что футер выше других элементов */
+    cursor: pointer;
 }
 
-.footer-text {
-    font-size: 12px; /* Размер шрифта для текста в подвале */
-    color: #555; /* Цвет текста в подвале */
+footer.show {
+    display: flex; /* Показываем футер как flexbox */
+    opacity: 1; /* Показываем футер */
+    transition: opacity 0.3s ease; /* Плавный переход для появления */
+
 }

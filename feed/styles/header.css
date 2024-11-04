@@ -14,8 +14,20 @@ header.hidden {
     transform: translateY(-100%); /* Скрытие заголовка при добавлении класса hidden */
 }
 
+.header-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_image{
+height: 42px;
+padding-right: 20px;
+}
+
 .main-title {
     margin: 0; /* Убираем отступы для заголовка */
+    font-size: 22px;
 }
 
 .notification-icon {

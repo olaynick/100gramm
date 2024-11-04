@@ -2,11 +2,10 @@ export function initializeComments(post) {
     const sendCommentButton = post.querySelector('.send-comment');
     const commentInput = post.querySelector('.comment-input');
     const commentsContainer = post.querySelector('.comments-container');
-    const showCommentsButton = post.querySelector('.show-comments-button');
     const showMoreButton = commentsContainer.querySelector('.show-more-comments-button');
 
     // Проверка наличия всех необходимых элементов
-    if (!sendCommentButton || !commentInput || !commentsContainer || !showCommentsButton || !showMoreButton) {
+    if (!sendCommentButton || !commentInput || !commentsContainer || !showMoreButton) {
         console.warn('Не все элементы комментариев найдены в посте', post);
         return;
     }
@@ -15,8 +14,8 @@ export function initializeComments(post) {
         addComment(commentInput, commentsContainer);
     });
 
-    showCommentsButton.addEventListener('click', () => {
-        toggleComments(commentsContainer, showCommentsButton);
+    showMoreButton.addEventListener('click', () => {
+        toggleComments(commentsContainer, showMoreButton);
     });
 
     // Инициализация видимости комментариев
@@ -27,7 +26,7 @@ function addComment(input, container) {
     if (input.value.trim() !== "") {
         const commentText = input.value;
         const comment = createCommentElement(commentText);
-        container.appendChild(comment);
+        container.insertBefore(comment, container.querySelector('.show-more-comments-button')); // Вставляем перед кнопкой
         input.value = '';
         updateCommentsVisibility(container); // Обновляем видимость комментариев после добавления
     }
@@ -58,10 +57,9 @@ function updateCommentsVisibility(container) {
         }
     });
 
-    // Проверяем, нужно ли показывать кнопку "Еще"
+    // Проверяем, нужно ли показывать кнопку "Показать еще"
     if (comments.length > 3) {
         showMoreButton.style.display = 'block';
-        showMoreButton.textContent = 'Еще';
     } else {
         showMoreButton.style.display = 'none';
     }
@@ -69,25 +67,22 @@ function updateCommentsVisibility(container) {
 
 function toggleComments(container, button) {
     const comments = container.querySelectorAll('.comment');
-    const showMoreButton = container.querySelector('.show-more-comments-button');
 
-    if (showMoreButton.textContent === 'Еще') {
+    if (button.textContent === 'Показать еще') {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'block'; // Показываем все комментарии
-                // Если комментарий длиннее 20 символов, показываем полный текст
                 comment.textContent = comment.dataset.fullText; // Показываем полный текст комментария
             }
         });
-        showMoreButton.textContent = 'Скрыть';
+        button.textContent = 'Скрыть';
     } else {
         comments.forEach((comment, index) => {
             if (index >= 3) {
                 comment.style.display = 'none'; // Скрываем комментарии, кроме первых трех
-                // Скрываем длинные комментарии, показываем только предварительный текст
                 comment.textContent = comment.dataset.fullText.substring(0, 20) + '...'; // Показываем краткий текст
             }
         });
-        showMoreButton.textContent = 'Еще';
+        button.textContent = 'Показать еще';
     }
 }
