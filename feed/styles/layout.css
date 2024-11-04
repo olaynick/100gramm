@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, sans-serif; /* Шрифт для всего тела */
+}
+
+main {
+    display: flex; /* Используем flexbox для основного содержимого */
+    flex-direction: column; /* Вертикальное расположение элементов */
+    align-items: center; /* Центрируем элементы */
+    padding-top: 70px; /* Отступ сверху для основного содержимого */
+    margin: 0; /* Убираем отступы */
+}

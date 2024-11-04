@@ -1,0 +1,28 @@
+header {
+    background-color: #f8f9fa; /* Цвет фона заголовка */
+    padding: 5px 20px; /* Внутренние отступы заголовка */
+    position: fixed; /* Фиксированное положение заголовка */
+    width: 100%; /* Ширина заголовка */
+    top: 0; /* Положение сверху */
+    z-index: 1000; /* Уровень наложения */
+    display: flex; /* Используем flexbox для выравнивания */
+    justify-content: space-between; /* Распределение элементов заголовка */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+header.hidden {
+    transform: translateY(-100%); /* Скрытие заголовка при добавлении класса hidden */
+}
+
+.main-title {
+    margin: 0; /* Убираем отступы для заголовка */
+}
+
+.notification-icon {
+    width: 42px; /* Ширина иконки уведомлений */
+    height: 42px; /* Высота иконки уведомлений */
+    display: flex; /* Используем flexbox для центрирования */
+    justify-content: center; /* Центрируем содержимое */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    cursor: pointer; /* Указатель при наведении */
+}

@@ -1,0 +1,9 @@
+.like-icon {
+    cursor: pointer; /* Указатель при наведении на иконку лайка */
+    font-size: 20px; /* Размер иконки лайка */
+    transition: transform 0.2s; /* Плавный переход при наведении */
+}
+
+.like-icon:hover {
+    transform: scale(1.2); /* Увеличение размера иконки при наведении */
+}

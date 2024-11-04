@@ -1,0 +1,151 @@
+/* Устанавливаем box-sizing для всех элементов */
+* {
+    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+}
+
+/* Основные стили для body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+}
+
+/* Контейнер для форм */
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Занимает всю ширину контейнера */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
+    padding: 20px;
+}
+
+/* Контейнер для форм */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование содержимого по горизонтали */
+}
+
+/* Заголовок */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Стили для полей ввода */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+.code-input {
+    padding: 10px;
+    margin: 10px; /* Отступы сверху и снизу для полей ввода */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%; /* Поля ввода занимают всю ширину контейнера */
+}
+
+/* Стили для кнопок */
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Кнопка будет занимать всю ширину контейнера */
+    margin-top: 10px; /* Отступ сверху для кнопки */
+}
+
+button:hover {
+    background-color: #218838;
+}
+/* Стили для переключения форм */
+.toggle-form {
+    text-align: center;
+    color: #007bff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.toggle-form:hover {
+    text-decoration: underline;
+}
+
+/* Стили для скрытия элементов */
+.hidden {
+    display: none;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px; /* Отступ сверху для сообщения об ошибке */
+}
+
+/* Стили для ввода кода подтверждения */
+.verification-code {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0; /* Добавляем отступ сверху и снизу */
+}
+
+.code-input {
+    width: 40px; /* Уменьшаем ширину для создания пространства */
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    margin: 0 5px; /* Добавляем пространство между окнами */
+    border-radius: 4px; /* Добавляем скругление углов */
+}
+
+.code-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Стили для состояния кнопки при наведении */
+button:focus {
+    outline: none; /* Убираем стандартный контур при фокусе */
+}
+
+/* Стили для текста и заголовков */
+h2 {
+    margin-bottom: 20px; /* Добавляем отступ снизу для заголовка */
+}
+
+/* Общее оформление для форм */
+.form-container {
+    padding: 20px; /* Добавляем внутренние отступы */
+}
+
+/* Стили для общего контейнера */
+.container {
+    padding: 20px; /* Внутренние отступы для контейнера */
+    border-radius: 8px; /* Скругление углов у контейнера */
+}
+
+/* Стили для кнопки "Подтвердить" в коде подтверждения */
+button {
+    background-color: #007bff; /* Цвет фона кнопки */
+}
+
+button:hover {
+    background-color: #0056b3; /* Цвет фона кнопки при наведении */
+}
+
+/* Стили для текста ошибок (если нужно) */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}

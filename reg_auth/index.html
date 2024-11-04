@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация и Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="login-form">
+            <h2>Авторизация</h2>
+            <input type="text" id="login" placeholder="Логин / Электронная почта" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button onclick="login()">Войти</button>
+            <p class="toggle-form" onclick="toggleForms()">Зарегистрироваться</p>
+        </div>
+
+        <div class="form-container hidden" id="register-form">
+            <h2>Регистрация</h2>
+            <input type="email" id="email" placeholder="Электронная почта" required>
+            <input type="password" id="new-password" placeholder="Придумайте пароль" required>
+            <button onclick="register()">Зарегистрироваться</button>
+            <p class="toggle-form" onclick="toggleForms()">Назад к авторизации</p>
+        </div>
+
+        <div class="form-container hidden" id="verification-form">
+            <h2>Введите код подтверждения отправленный на e-mail</h2>
+            <div class="verification-code">
+                <input type="text" maxlength="1" class="code-input" required>
+                <input type="text" maxlength="1" class="code-input" required>
+                <input type="text" maxlength="1" class="code-input" required>
+                <input type="text" maxlength="1" class="code-input" required>
+                <input type="text" maxlength="1" class="code-input" required>
+                <input type="text" maxlength="1" class="code-input" required>
+            </div>
+            <button onclick="verifyCode()">Подтвердить</button>
+            <p class="error-message hidden" id="error-message">Введен неверный код</p> <!-- Добавлено сообщение об ошибке -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
