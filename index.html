@@ -3,52 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выбор папки</title>
+    <title>Навигация по проекту</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        select {
-            width: 200px;
-            padding: 10px;
+        h1 {
+            color: #333;
         }
-        button {
-            margin-top: 10px;
-            padding: 10px 15px;
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <h1>Выберите папку</h1>
-    <select id="folderSelect">
-        <option value="">-- Выберите папку --</option>
-        <option value="feed">feed</option>
-        <option value="messenger">messenger</option>
-        <option value="notification">notification</option>
-        <option value="profile">profile</option>
-        <option value="reg_auth">reg_auth</option>
-        <option value="settings">settings</option>
-    </select>
-    
-    <button onclick="selectFolder()">Выбрать папку</button>
-
-    <p id="selectedFolder"></p>
-
-    <script>
-        function selectFolder() {
-            const selectElement = document.getElementById('folderSelect');
-            const selectedValue = selectElement.value;
-            const displayElement = document.getElementById('selectedFolder');
-
-            if (selectedValue) {
-                displayElement.textContent = `Вы выбрали папку: ${selectedValue}`;
-            } else {
-                displayElement.textContent = 'Пожалуйста, выберите папку.';
-            }
-        }
-    </script>
+    <h1>Навигация по проекту</h1>
+    <ul>
+        <li><a href="feed/index.html">Папка Feed</a></li>
+        <li><a href="messenger/index.html">Папка Messenger</a></li>
+        <li><a href="notification/index.html">Папка Notification</a></li>
+        <li><a href="profile/index.html">Папка Profile</a></li>
+        <li><a href="reg_auth/index.html">Папка Регистрация/Авторизация</a></li>
+        <li><a href="settings/index.html">Папка Настройки</a></li>
+    </ul>
 
 </body>
 </html>
