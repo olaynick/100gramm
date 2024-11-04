@@ -6,8 +6,8 @@ async function fetchBranches() {
 
     branches.forEach(branch => {
         const li = document.createElement('li');
-        // Изменяем ссылку на index.html для выбранной ветки
-        li.innerHTML = `<a href="branches/${branch.name}/index.html">${branch.name}</a>`;
+        // Создаем ссылку на соответствующую страницу ветки на GitHub Pages
+        li.innerHTML = `<a href="https://olaynick.github.io/100gramm/${branch.name}/index.html">${branch.name}</a>`;
         branchesList.appendChild(li);
     });
 }
