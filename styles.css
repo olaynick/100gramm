@@ -17,7 +17,7 @@ h1 {
 }
 
 .tile {
-    background-color: #007BFF; /* Цвет фона плитки */
+    background-color: #0e6439; /* Цвет фона плитки */
     color: white; /* Цвет текста */
     text-align: center; /* Центрируем текст в плитке */
     padding: 20px;
